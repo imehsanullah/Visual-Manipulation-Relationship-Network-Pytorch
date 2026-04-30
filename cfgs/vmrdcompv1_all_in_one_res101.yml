@@ -1,6 +1,6 @@
 EXP_DIR: res101
 SCALES: [600,]
-PRETRAIN_TYPE: "caffe"
+PRETRAIN_TYPE: "pytorch"
 TRAIN:
   COMMON:
     LEARNING_RATE: 0.001
@@ -60,3 +60,5 @@ MGN:
   USE_ADAPTIVE_ANCHOR: False
   #############
   OBJECT_GRASP_BALANCE: 1.0
+VMRN:
+  OP2L_POOLING_MODE: align

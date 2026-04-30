@@ -10,7 +10,7 @@ import torch
 import torch.nn.functional as F
 from torch import nn
 
-from utils.config import cfg
+from model.utils.config import cfg
 from model.fcgn.bbox_transform_grasp import points2labels
 
 from model.rpn.bbox_transform import bbox_overlaps, bbox_overlaps_batch
@@ -276,7 +276,7 @@ class All_in_One(MGN, VMRN):
 
         if self._fix_fasterRCNN:
             assert object_detector_path != '', "An pretrained object detector should be specified for VMRN."
-            object_detector = torch.load(object_detector_path)
+            object_detector = torch.load(object_detector_path, weights_only=False)
             self._load_and_fix_object_detector(object_detector['model'])
 
     def _init_modules_resnet(self):

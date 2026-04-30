@@ -4,8 +4,7 @@ from torch import nn
 from torch.autograd import Function
 from torch.autograd.function import once_differentiable
 from torch.nn.modules.utils import _pair
-
-from . import C_ROIPooling
+from torchvision.ops import roi_pool as torchvision_roi_pool
 
 
 class _ROIPool(Function):
@@ -62,7 +61,7 @@ class ROIPool(nn.Module):
         :param rois: [k, 5] : (im_index, x1, y1, x2, y2)
         :return: pooled features (K C H W), K = k
         """
-        return roi_pool(input.float(), rois.float(), self.output_size, self.spatial_scale)
+        return torchvision_roi_pool(input.float(), rois.float(), self.output_size, self.spatial_scale)
 
     def __repr__(self):
         tmpstr = self.__class__.__name__ + "("

@@ -258,7 +258,7 @@ class vmrdetRoibatchLoader(objdetRoibatchLoader):
         if self.training:
             # object detection data
             # 4 coordinates (xmin, ymin, xmax, ymax) and 1 label
-            shuffle_inds = range(blobs['gt_boxes'].shape[0])
+            shuffle_inds = list(range(blobs['gt_boxes'].shape[0]))
             np.random.shuffle(shuffle_inds)
             shuffle_inds = torch.LongTensor(shuffle_inds)
             gt_boxes = torch.from_numpy(blobs['gt_boxes'])
@@ -554,7 +554,7 @@ class vmrdetMulInSizeRoibatchLoader(vmrdetRoibatchLoader, objdetMulInSizeRoibatc
         # we need to random shuffle the bounding box.
         data_height, data_width = data.size(0), data.size(1)
         if self.training:
-            shuffle_inds = range(blobs['gt_boxes'].shape[0])
+            shuffle_inds = list(range(blobs['gt_boxes'].shape[0]))
             np.random.shuffle(shuffle_inds)
             shuffle_inds = torch.LongTensor(shuffle_inds)
 
@@ -663,14 +663,14 @@ class roigdetMulInSizeRoibatchLoader(graspMulInSizeRoibatchLoader, objdetMulInSi
             gt_grasp_inds = torch.from_numpy(blobs['gt_grasp_inds'])
 
             # shuffle boxes
-            shuffle_inds_b = range(blobs['gt_boxes'].shape[0])
+            shuffle_inds_b = list(range(blobs['gt_boxes'].shape[0]))
             np.random.shuffle(shuffle_inds_b)
             shuffle_inds_b = torch.LongTensor(shuffle_inds_b)
             gt_boxes = gt_boxes[shuffle_inds_b]
             gt_grasp_inds = self._graspIndsPostProcess(gt_grasp_inds, shuffle_inds_b.data.numpy(), blobs['node_inds'])
 
             # shuffle grasps
-            shuffle_inds_g = range(blobs['gt_grasps'].shape[0])
+            shuffle_inds_g = list(range(blobs['gt_grasps'].shape[0]))
             np.random.shuffle(shuffle_inds_g)
             shuffle_inds_g = torch.LongTensor(shuffle_inds_g)
             gt_grasps = gt_grasps[shuffle_inds_g]
@@ -768,14 +768,14 @@ class allInOneMulInSizeRoibatchLoader(roigdetMulInSizeRoibatchLoader, vmrdetMulI
             gt_grasp_inds = torch.from_numpy(blobs['gt_grasp_inds'])
 
             # shuffle boxes
-            shuffle_inds_b = range(blobs['gt_boxes'].shape[0])
+            shuffle_inds_b = list(range(blobs['gt_boxes'].shape[0]))
             np.random.shuffle(shuffle_inds_b)
             shuffle_inds_b = torch.LongTensor(shuffle_inds_b)
             gt_boxes = gt_boxes[shuffle_inds_b]
             gt_grasp_inds = self._graspIndsPostProcess(gt_grasp_inds, shuffle_inds_b.data.numpy(), blobs['node_inds'])
 
             # shuffle grasps
-            shuffle_inds_g = range(blobs['gt_grasps'].shape[0])
+            shuffle_inds_g = list(range(blobs['gt_grasps'].shape[0]))
             np.random.shuffle(shuffle_inds_g)
             shuffle_inds_g = torch.LongTensor(shuffle_inds_g)
             gt_grasps = gt_grasps[shuffle_inds_g]

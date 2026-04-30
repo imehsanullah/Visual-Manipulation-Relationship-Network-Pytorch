@@ -48,7 +48,7 @@ class VGG(featExtractor):
          # Initialize weights
         if pretrained_model_path is not None:
             print("loading pretrained model: " + pretrained_model_path)
-            state_dict = torch.load(pretrained_model_path)
+            state_dict = torch.load(pretrained_model_path, weights_only=False)
             # self.load_state_dict({k: v for k, v in state_dict.items() if k in self.state_dict()})
             self.load_state_dict(state_dict)
         else:

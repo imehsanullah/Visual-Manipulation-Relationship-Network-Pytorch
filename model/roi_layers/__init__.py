@@ -1,7 +1,7 @@
 from .nms import nms
 
 import torch
-if torch.__version__.split(".")[0] == "1":
+if torch.__version__.split(".")[0] in {"1", "2"}:
     from .roi_align import ROIAlign, RoIAlignAvg, RoIAlignMax
     from .roi_pool import ROIPool
 
@@ -26,4 +26,4 @@ elif torch.__version__ == "0.4.0":
             super(ROIPool, self).__init__(output_size[0], output_size[1], spatial_scale)
 
 else:
-    raise RuntimeError("unsupported torch version. Supported: 0.4.0 (recommended) and 1.x")
+    raise RuntimeError("unsupported torch version. Supported: 0.4.0 (recommended), 1.x, and 2.x")

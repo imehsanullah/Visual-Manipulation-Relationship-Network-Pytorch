@@ -11,7 +11,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
 import numpy as np
-from utils.config import cfg
+from model.utils.config import cfg
 from rpn.rpn import _RPN
 from model.roi_layers import RoIAlignAvg, ROIPool
 from rpn.proposal_target_layer_cascade import _ProposalTargetLayer
@@ -19,7 +19,7 @@ from Detectors import objectDetector
 
 import time
 import pdb
-from utils.net_utils import _smooth_l1_loss, _crop_pool_layer, _affine_grid_gen, \
+from model.utils.net_utils import _smooth_l1_loss, _crop_pool_layer, _affine_grid_gen, \
     _affine_theta, weights_normal_init, weights_xavier_init
 
 import torch.nn.init as init
@@ -313,4 +313,3 @@ class FPN(objectDetector):
         pool5_flat = pool5.view(pool5.size(0), -1)
         fc7 = self.RCNN_top(pool5_flat)
         return fc7
-

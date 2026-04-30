@@ -1,4 +1,5 @@
 EXP_DIR: res101
+PRETRAIN_TYPE: "pytorch"
 SCALES: [600,]
 TRAIN:
   COMMON:
@@ -30,5 +31,4 @@ RCNN_COMMON:
   ANCHOR_SCALES: [4, 8, 16, 32]
   ANCHOR_RATIOS: [0.5, 1, 2, 3]
   FEAT_STRIDE: [16,]
-
 

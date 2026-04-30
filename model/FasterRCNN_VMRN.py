@@ -7,11 +7,11 @@
 
 import torch
 import torch.nn as nn
-from utils.config import cfg
+from model.utils.config import cfg
 
 from FasterRCNN import fasterRCNN
 from Detectors import VMRN
-from utils.net_utils import set_bn_eval, set_bn_fix
+from model.utils.net_utils import set_bn_eval, set_bn_fix
 
 class fasterRCNN_VMRN(fasterRCNN, VMRN):
     """ faster RCNN """
@@ -185,7 +185,7 @@ class fasterRCNN_VMRN(fasterRCNN, VMRN):
 
         if self._fix_fasterRCNN:
             assert object_detector_path != '', "An pretrained object detector should be specified for VMRN."
-            object_detector = torch.load(object_detector_path)
+            object_detector = torch.load(object_detector_path, weights_only=False)
             self._load_and_fix_object_detector(object_detector['model'])
 
     def _init_modules_resnet(self):

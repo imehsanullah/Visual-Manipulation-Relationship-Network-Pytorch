@@ -4,8 +4,8 @@ baidu dianshi dataset, same with PASCAL VOC
 
 from model.utils.config import cfg
 import os
-from pascal_voc import pascal_voc
-from imdb import imdb
+from .pascal_voc import pascal_voc
+from .imdb import imdb
 import uuid
 import scipy.sparse
 import numpy as np

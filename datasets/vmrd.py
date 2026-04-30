@@ -197,8 +197,8 @@ class vmrd(pascal_voc):
                             for index in self.image_index if index.startswith("coco") or index.startswith("vg")])
 
         else:
-            gt_roidb = [dict(self._load_vmrd_annotation(index).items() +
-                             self._load_grasp_annotation(index).items())
+            gt_roidb = [dict(list(self._load_vmrd_annotation(index).items()) +
+                             list(self._load_grasp_annotation(index).items()))
                         for index in self.image_index[:self._original_num_img]]
             if self._image_set == "trainval":
                 gt_roidb = self._append_rotated_images(gt_roidb)

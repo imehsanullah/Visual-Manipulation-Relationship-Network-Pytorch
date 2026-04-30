@@ -390,6 +390,8 @@ def _merge_a_into_b(a, b):
     if old_type is not type(v):
       if isinstance(b[k], np.ndarray):
         v = np.array(v, dtype=b[k].dtype)
+      elif isinstance(b[k], tuple) and isinstance(v, list):
+        v = tuple(v)
       else:
         raise ValueError(('Type mismatch ({} vs. {}) '
                           'for config key: {}').format(type(b[k]),
@@ -410,7 +412,7 @@ def cfg_from_file(filename):
   """Load a config file and merge it into the default options."""
   import yaml
   with open(filename, 'r') as f:
-    yaml_cfg = edict(yaml.load(f))
+    yaml_cfg = edict(yaml.safe_load(f))
 
   _merge_a_into_b(yaml_cfg, __C)
 

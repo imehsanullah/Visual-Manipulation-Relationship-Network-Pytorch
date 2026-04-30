@@ -141,7 +141,7 @@ class ResNet(featExtractor):
         if pretrained_model_path is not None:
             print("loading pretrained model: " + pretrained_model_path)
 
-            state_dict = torch.load(pretrained_model_path)
+            state_dict = torch.load(pretrained_model_path, weights_only=False)
             # self.load_state_dict({k:v for k,v in state_dict.items() if k in self.state_dict()})
             self.load_state_dict(state_dict)
 
@@ -303,6 +303,5 @@ def resnet_initializer(name, feat_list, pretrained = False):
     model = ResNet(cfg_dict[name]["block"], cfg_dict[name]["layer_cfg"],
                    feat_list=feat_list, pretrained_model_path=local_model_paths[name] if pretrained else None)
     return model
-
 
 

@@ -150,7 +150,7 @@ def init_network(args, n_cls):
                                  args.frame + '_{}_{}_{}.pth'.format(args.checksession, args.checkepoch,
                                                                      args.checkpoint))
         print("loading checkpoint %s" % (load_name))
-        checkpoint = torch.load(load_name)
+        checkpoint = torch.load(load_name, weights_only=False)
         args.session = checkpoint['session']
         Network.load_state_dict(checkpoint['model'])
         if 'pooling_mode' in checkpoint.keys():

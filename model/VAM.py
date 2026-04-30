@@ -311,7 +311,8 @@ class SSD(nn.Module):
         if ext == '.pkl' or '.pth':
             print('Loading weights into state dict...')
             self.load_state_dict(torch.load(base_file,
-                                 map_location=lambda storage, loc: storage))
+                                            map_location=lambda storage, loc: storage,
+                                            weights_only=False))
             print('Finished!')
         else:
             print('Sorry only .pth and .pkl files supported.')
@@ -494,7 +495,7 @@ class vgg16(SSD):
                                          mbox_cfg, self.num_classes)
         # init base net
         base = nn.ModuleList(base)
-        vgg_weights = torch.load(self.module_path)
+        vgg_weights = torch.load(self.module_path, weights_only=False)
         base.load_state_dict(vgg_weights)
 
         self.base = nn.ModuleList(base[:23])
@@ -505,7 +506,7 @@ class vgg16(SSD):
         self.conf = nn.ModuleList(head[1])
 
         rel_base = torchvision.models.vgg16()
-        vgg_weights = torch.load(self.rel_module_path)
+        vgg_weights = torch.load(self.rel_module_path, weights_only=False)
         rel_base.load_state_dict(vgg_weights)
 
         self.rel_base = rel_base.features
@@ -618,7 +619,7 @@ class resnet(SSD):
             rel_base = torchvision.models.resnet101()
         else:
             assert 0, "This ResNet is not defined."
-        res_weights = torch.load(self.module_path)
+        res_weights = torch.load(self.module_path, weights_only=False)
         rel_base.load_state_dict(res_weights)
 
         self.rel_base = nn.ModuleList([rel_base.conv1, rel_base.bn1, rel_base.relu, rel_base.maxpool,
@@ -685,7 +686,7 @@ class resnet(SSD):
             assert 0, "This ResNet is not defined."
 
         if self._pretrained:
-            res_weights = torch.load(self.module_path)
+            res_weights = torch.load(self.module_path, weights_only=False)
             res_full.load_state_dict(res_weights)
 
         layers = [res_full.conv1, res_full.bn1, res_full.relu, res_full.maxpool,

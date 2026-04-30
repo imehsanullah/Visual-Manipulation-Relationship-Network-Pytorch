@@ -9,12 +9,12 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from utils.config import cfg
+from model.utils.config import cfg
 from rpn.rpn import _RPN
 from model.roi_layers import RoIAlignAvg, RoIAlignMax, ROIPool
 from rpn.proposal_target_layer_cascade import _ProposalTargetLayer
 from Detectors import objectDetector
-from utils.net_utils import _smooth_l1_loss, weights_normal_init
+from model.utils.net_utils import _smooth_l1_loss, weights_normal_init
 
 class fasterRCNN(objectDetector):
     """ faster RCNN """

@@ -262,7 +262,7 @@ class MGN(fasterRCNN, FCGN):
 
         if self._fix_fasterRCNN:
             assert object_detector_path != '', "An pretrained object detector should be specified for VMRN."
-            object_detector = torch.load(object_detector_path)
+            object_detector = torch.load(object_detector_path, weights_only=False)
             self._load_and_fix_object_detector(object_detector['model'])
 
     def _load_and_fix_object_detector(self, object_model):
@@ -278,9 +278,9 @@ class MGN(fasterRCNN, FCGN):
     def _init_modules_resnet(self):
         fasterRCNN._init_modules_resnet(self)
         self.MGN_top = nn.Sequential(
-            Bottleneck(self.dout_base_model, self.dout_base_model / 4),
-            Bottleneck(self.dout_base_model, self.dout_base_model / 4),
-            Bottleneck(self.dout_base_model, self.dout_base_model / 4)
+            Bottleneck(self.dout_base_model, self.dout_base_model // 4),
+            Bottleneck(self.dout_base_model, self.dout_base_model // 4),
+            Bottleneck(self.dout_base_model, self.dout_base_model // 4)
         )
 
     def _init_modules_vgg(self):

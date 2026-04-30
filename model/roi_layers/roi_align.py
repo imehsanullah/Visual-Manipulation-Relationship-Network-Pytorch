@@ -5,8 +5,7 @@ from torch.autograd import Function
 from torch.autograd.function import once_differentiable
 from torch.nn.modules.utils import _pair
 from torch.nn.functional import avg_pool2d, max_pool2d
-
-from . import C_ROIPooling
+from torchvision.ops import roi_align as torchvision_roi_align
 
 
 class _ROIAlign(Function):
@@ -66,7 +65,7 @@ class ROIAlign(nn.Module):
         :param rois: [k, 5]: (im_index, x1, y1, x2, y2)
         :return: pooled features [K C H W], K = k
         """
-        return roi_align(
+        return torchvision_roi_align(
             input.float(), rois.float(), self.output_size, self.spatial_scale, self.sampling_ratio
         )
 
@@ -83,7 +82,7 @@ class RoIAlignAvg(ROIAlign):
         super(RoIAlignAvg, self).__init__(output_size, spatial_scale, sampling_ratio)
 
     def forward(self, features, rois):
-        x = roi_align(
+        x = torchvision_roi_align(
             features, rois, self.output_size, self.spatial_scale, self.sampling_ratio
         )
         return avg_pool2d(x, kernel_size=2, stride=1)
@@ -93,7 +92,7 @@ class RoIAlignMax(ROIAlign):
         super(RoIAlignMax, self).__init__(output_size, spatial_scale, sampling_ratio)
 
     def forward(self, features, rois):
-        x = roi_align(
+        x = torchvision_roi_align(
             features, rois, self.output_size, self.spatial_scale, self.sampling_ratio
         )
         return max_pool2d(x, kernel_size=2, stride=1)

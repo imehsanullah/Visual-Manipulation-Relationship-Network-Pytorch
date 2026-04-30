@@ -15,6 +15,7 @@ import os.path as osp
 # of cv2.imread and PIL.Image.open are different, which will cause errors later.
 import cv2
 import PIL
+import PIL.Image
 
 from model.utils.cython_bbox import bbox_overlaps
 import numpy as np
@@ -191,8 +192,8 @@ class imdb(object):
       if limit is not None and boxes.shape[0] > limit:
         boxes = boxes[:limit, :]
 
-      overlaps = bbox_overlaps(boxes.astype(np.float),
-                               gt_boxes.astype(np.float))
+      overlaps = bbox_overlaps(boxes.astype(np.float64),
+                               gt_boxes.astype(np.float64))
 
       _gt_overlaps = np.zeros((gt_boxes.shape[0]))
       for j in range(gt_boxes.shape[0]):

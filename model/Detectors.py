@@ -2,8 +2,8 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 import numpy as np
-from utils.config import cfg
-from utils.net_utils import set_bn_fix, set_bn_eval, set_bn_unfix, set_bn_train
+from model.utils.config import cfg
+from model.utils.net_utils import set_bn_fix, set_bn_eval, set_bn_unfix, set_bn_train
 
 import abc
 
@@ -11,8 +11,8 @@ from basenet.resnet import resnet_initializer
 from basenet.vgg import vgg_initializer
 from model.op2l.op2l import _OP2L
 from model.rpn.bbox_transform import bbox_overlaps
-from utils.net_utils import objdet_inference, weights_normal_init
-from utils.crf_utils import crf, RelaTransform
+from model.utils.net_utils import objdet_inference, weights_normal_init
+from model.utils.crf_utils import crf, RelaTransform
 import copy
 
 
