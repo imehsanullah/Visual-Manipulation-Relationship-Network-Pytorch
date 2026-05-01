@@ -14,6 +14,11 @@ import copy
 
 import networkx as nx
 
+try:
+    xrange
+except NameError:
+    xrange = range
+
 def save_net(fname, net):
     import h5py
     h5f = h5py.File(fname, mode='w')

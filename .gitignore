@@ -18,3 +18,5 @@ backup.py
 
 data/*
 output/*
+hf_backup_vmrd_faster_rcnn_res101_detection/*
+*.pkl

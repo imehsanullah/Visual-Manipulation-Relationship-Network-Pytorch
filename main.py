@@ -44,6 +44,11 @@ from datasets.factory import get_imdb
 
 import warnings
 
+try:
+    xrange
+except NameError:
+    xrange = range
+
 torch.set_default_tensor_type(torch.FloatTensor)
 
 # implemented-algorithm list
