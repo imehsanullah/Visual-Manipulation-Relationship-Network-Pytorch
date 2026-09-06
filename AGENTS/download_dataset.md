@@ -197,7 +197,7 @@ Observed output:
 ```text
 num_images 450
 first_index 00035
-first_image /home/user/ehsanullahm1/thesis/Visual-Manipulation-Relationship-Network-Pytorch/data/VMRD/vmrdcompv1/JPEGImages/00035.jpg
+first_image /home/user/ehsanullahm1/thesis/upstream_research_repositories/scene_graph_related_research_papers/Visual-Manipulation-Relationship-Network-Pytorch/data/VMRD/vmrdcompv1/JPEGImages/00035.jpg
 first_grasps (31, 8) (31,)
 ```
 
@@ -214,5 +214,5 @@ Initialize image widths and heights...
 num_images_augmented 16932
 original_num_img 4233
 first_index 00022
-first_image /home/user/ehsanullahm1/thesis/Visual-Manipulation-Relationship-Network-Pytorch/data/VMRD/vmrdcompv1/JPEGImages/00022.jpg
+first_image /home/user/ehsanullahm1/thesis/upstream_research_repositories/scene_graph_related_research_papers/Visual-Manipulation-Relationship-Network-Pytorch/data/VMRD/vmrdcompv1/JPEGImages/00022.jpg
 ```

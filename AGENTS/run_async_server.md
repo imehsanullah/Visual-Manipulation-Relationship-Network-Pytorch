@@ -39,10 +39,10 @@ tmux kill-session -t SESSION_NAME
 This is the pattern used to start a VMRD `all_in_one` GPU training run for this repository:
 
 ```bash
-mkdir -p /home/user/ehsanullahm1/thesis/Visual-Manipulation-Relationship-Network-Pytorch/output/vmrdcompv1/res101
+mkdir -p /home/user/ehsanullahm1/thesis/upstream_research_repositories/scene_graph_related_research_papers/Visual-Manipulation-Relationship-Network-Pytorch/output/vmrdcompv1/res101
 
 tmux new-session -d -s vmrn_all_in_one_gpu0 \
-  "cd /home/user/ehsanullahm1/thesis/Visual-Manipulation-Relationship-Network-Pytorch && \
+  "cd /home/user/ehsanullahm1/thesis/upstream_research_repositories/scene_graph_related_research_papers/Visual-Manipulation-Relationship-Network-Pytorch && \
    CUDA_VISIBLE_DEVICES=0 \
    PYTHONPATH=\$PWD/model:\$PWD \
    /home/user/ehsanullahm1/miniconda3/envs/vmrn_gpu_py310/bin/python main.py \
@@ -74,7 +74,7 @@ Important details:
 Watch the log without attaching to tmux:
 
 ```bash
-tail -f /home/user/ehsanullahm1/thesis/Visual-Manipulation-Relationship-Network-Pytorch/output/vmrdcompv1/res101/train.log
+tail -f /home/user/ehsanullahm1/thesis/upstream_research_repositories/scene_graph_related_research_papers/Visual-Manipulation-Relationship-Network-Pytorch/output/vmrdcompv1/res101/train.log
 ```
 
 Check GPU usage:
